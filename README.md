@@ -57,6 +57,15 @@ The repository contains the following scripts which are:
 | npm | Runs npm commands. | `./npm --version` on linux/Mac and `npm.bat --version` in windows. |
 | run-project | Runs and serves the project. | `./run-project` on linux/Mac and `run-project.bat` in windows. |
 
+## Accessing Services
+
+After setup is completed, the following services can now be accessed at the following urls:
+| Serice | Url |
+| ------ | ------ |
+| Application | [http://localhost:8000](http://localhost:8000) |
+| Mailhog | [http://localhost:8025](http://localhost:8025) |
+| PhpMyAdmin | [http://localhost:8888](http://localhost:8888) |
+
 ## References
 
 Shoutout to [Elvin Lari](https://medium.com/@elvinlari) for his article on [Medium](https://betterprogramming.pub/dockerize-laravel-vite-react-application-in-your-development-environment-a118aea4a02d), based on which this project is created.
