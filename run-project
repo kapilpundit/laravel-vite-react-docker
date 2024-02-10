@@ -10,8 +10,5 @@ eval $docker_services
 # Command to which options will be appended
 npm_build_command="docker-compose run --rm --service-ports npm run dev"
 
-# Concatenate provided arguments as options
-options="$base_command $@"
-
 # Execute the command
 eval $npm_build_command
