@@ -1,0 +1,13 @@
+#!/bin/bash
+# Runs artisan command in docker
+# You can pass your argument like so:
+# ./artisan <my_command>
+
+# Command to which options will be appended
+base_command="docker-compose run --rm artisan"
+
+# Concatenate provided arguments as options
+options="$base_command $@"
+
+# Execute the command
+eval $options

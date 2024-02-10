@@ -1,0 +1,13 @@
+#!/bin/bash
+# Runs composer command in docker
+# You can pass your argument like so:
+# ./composer install <my_package>
+
+# Command to which options will be appended
+base_command="docker-compose run --rm composer"
+
+# Concatenate provided arguments as options
+options="$base_command $@"
+
+# Execute the command
+eval $options

@@ -1,0 +1,13 @@
+#!/bin/bash
+# Runs npm command in docker
+# You can pass your argument like so:
+# ./npm install <my_package>
+
+# Command to which options will be appended
+base_command="docker-compose run --rm npm"
+
+# Concatenate provided arguments as options
+options="$base_command $@"
+
+# Execute the command
+eval $options
