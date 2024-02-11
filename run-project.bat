@@ -1,5 +1,5 @@
 rem Runs application and relevant containers in docker
-rem You can pass your argument like so:
+rem You can use it like so:
 rem run-project.bat
 @echo off
 setlocal enabledelayedexpansion

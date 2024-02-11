@@ -1,0 +1,8 @@
+#!/bin/bash
+# Stops application and relevant containers in docker
+# You can use it like so:
+# ./stop-project
+
+docker_services="docker-compose stop"
+
+eval $docker_services

@@ -3,6 +3,14 @@ version: "3.8"
 networks:
   laravel:
 
+volumes:
+  esdata01:
+    driver: local
+  # esdata02:
+  #   driver: local
+  kibanadata:
+    driver: local
+
 services:
   nginx:
     build:
@@ -27,6 +35,8 @@ services:
       - laravel-cron
       - phpmyadmin
       - mailhog
+      - es01
+      - kibana
     networks:
       - laravel
 
@@ -219,3 +229,38 @@ services:
     entrypoint: ["npm"]
     networks:
       - laravel
+
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    container_name: es01
+    volumes:
+      - esdata01:/usr/share/elasticsearch/data
+    environment:
+      - "discovery.type=single-node"
+      - ELASTIC_USERNAME=elastic
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - xpack.security.enabled=true
+    ports:
+      - ${ES_PORT}:9200
+      # - 9300:9300
+    networks:
+      - laravel
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
+    container_name: kibana
+    volumes:
+      - kibanadata:/usr/share/kibana/data
+    environment:
+      - ELASTICSEARCH_HOSTS="http://es01:${ES_PORT}"
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
+      - xpack.security.enabled=true
+    links:
+      - es01
+    ports:
+      - ${KIBANA_PORT}:5601
+    networks:
+      - laravel
+    depends_on:
+      - es01

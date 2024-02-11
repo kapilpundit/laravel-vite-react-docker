@@ -1,6 +1,6 @@
 #!/bin/bash
 # Runs application and relevant containers in docker
-# You can pass your argument like so:
+# You can use it like so:
 # ./run-project
 
 docker_services="docker-compose up -d nginx"
