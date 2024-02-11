@@ -66,6 +66,18 @@ After setup is completed, the following services can now be accessed at the foll
 | Mailhog | [http://localhost:8025](http://localhost:8025) |
 | PhpMyAdmin | [http://localhost:8888](http://localhost:8888) |
 
+## Elasticsearch
+
+To use elasticsearch we require `elasticsearch/elasticsearch` composer package.
+Also, we need to set the Elasticsearch and kibana information in `.env` file.
+`.env.example` file contains some references for basic ES and Kibana settings.
+
+For generating Elasticsearch and Kibana credentials, you may SSH into the es01 container (Elasticsearch)
+and execute the following command:
+`docker exec -it es01 bin/elasticsearch-setup-passwords auto`
+
+This will generate password for elastic, as well as kibana_system users which can be used in the `.env` file.
+
 ## References
 
 Shoutout to [Elvin Lari](https://medium.com/@elvinlari) for his article on [Medium](https://betterprogramming.pub/dockerize-laravel-vite-react-application-in-your-development-environment-a118aea4a02d), based on which this project is created.

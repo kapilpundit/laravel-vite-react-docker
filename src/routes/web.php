@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Elastic\Elasticsearch\ClientBuilder;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,32 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return inertia('Welcome');
+ });
+
+Route::get('/es', function () {
+    $client = ClientBuilder::create()
+    ->setHosts(config('database.connections.elasticsearch.hosts'))
+    ->setBasicAuthentication(
+        config('database.connections.elasticsearch.username'),
+        config('database.connections.elasticsearch.password')
+    )
+    ->build();
+
+    // Example search query
+    $params = [
+        'index' => 'expenses',
+        'body' => [
+            'query' => [
+                'match' => [
+                    'type' => 'household',
+                ],
+            ],
+        ],
+    ];
+
+    $response = $client->search($params);
+
+    dd($response->asArray());
+
+    return $response->asArray();
  });
