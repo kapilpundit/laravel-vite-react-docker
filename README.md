@@ -9,7 +9,7 @@ A Project built using Laravel (10) as backend, React (18) as frontend, using vit
 The following pre-requisites are required to be setup on your local machine in order to run this locally. The setup guide links given below have guides for Windows, Linux and Mac OS.
 
 - Docker and Docker Compose setup on your local machine
-  - [Docker setup guide](https://nodejs.org/)
+  - [Docker setup guide](https://docs.docker.com/get-docker/)
   - [Docker Composer setup guide](https://docs.docker.com/compose/gettingstarted/)
 - Git client
   - [Git client setup guide](https://docs.github.com/en/get-started/getting-started-with-git/set-up-git)
