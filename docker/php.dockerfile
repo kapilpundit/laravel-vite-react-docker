@@ -25,6 +25,16 @@ RUN echo "php_admin_flag[log_errors] = on" >> /usr/local/etc/php-fpm.d/www.conf
 RUN apk update && apk upgrade
 RUN docker-php-ext-install pdo pdo_mysql bcmath
 
+# Installing Postgresql
+RUN set -ex \
+    && apk --no-cache add \
+    postgresql-dev
+
+RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
+RUN docker-php-ext-install pdo pdo_pgsql pgsql
+
+# COPY ./docker/docker-php-ext-pdo_pgsql.ini /usr/local/etc/php/conf.d/docker-php-ext-pdo_pgsql.ini
+
 # Installing redis extension
 RUN mkdir -p /usr/src/php/ext/redis \
     && curl -fsSL https://github.com/phpredis/phpredis/archive/5.3.4.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 \

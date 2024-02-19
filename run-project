@@ -3,9 +3,7 @@
 # You can pass your argument like so:
 # ./run-project
 
-docker_services="docker-compose up -d nginx"
-
-eval $docker_services
+./backend
 
 # Command to which options will be appended
 npm_build_command="docker-compose run --rm --service-ports npm run dev"

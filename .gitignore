@@ -3,3 +3,4 @@ docker/logs/*
 docker/mysql/*
 docker/postgresql/*
 docker/pgadmin/*
+data/

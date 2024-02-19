@@ -1,0 +1,5 @@
+#!/bin/bash
+
+command="docker-compose $@ stop"
+
+eval $command
